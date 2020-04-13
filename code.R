@@ -88,8 +88,126 @@ hist(olive$eicosenoic)
 # Q10
 boxplot(olive$palmitic~region,data=olive)
 
+# Ch 04
+# Programming basics: conditionals
 
+#Example 1
+a <- 0
+if(a!=0){print(1/a)}else{print("No reciprocal for 0.")}
 
+#Example 2
+murder_rate <- murders$total/murders$population*100000
+ind <- which.min(murder_rate)
+if(murder_rate[ind]<0.1){print(murders$state[ind])}else{print("No state has murder rate that low")}
 
+#Example 3
+a <- 0
+ifelse(a!=0,1/a,NA)
 
+#Example 4
+a <- c(0,1,2,-4,5)
+ifelse(a!=0,1/a,NA)
+
+#Example 5
+data(na_example)
+sum(is.na(na_example))
+
+#Example 6
+no_nas <- ifelse(is.na(na_example),0,na_example)
+sum(is.na(no_nas))
+
+#Example 7
+z <- c(TRUE,TRUE,FALSE)
+any(z)
+all(z)
+
+# Programming basics: functions:
+
+#Example 1
+avg <- function(x){
+  s <- sum(x)
+  n <- length(x)
+  s/n
+}
+x <- 1:100
+avg(x)
+
+identical(mean(x),avg(x))
+
+#Example 2
+avg <- function(x,arithmetic=TRUE){
+  n <- length(x)
+  ifelse(arithmetic, sum(x)/n, prod(x)^(1/n))
+}
+x <- 1:10
+avg(x,arithmetic=FALSE)
+
+# Programming basics: for loops
+
+# Example 1
+compute_s_n <- function(n){
+  x <-1:n
+  sum(x)
+}
+
+# Example 2
+for(i in 1:5){
+  print(i)
+}
+
+# Example 3
+
+# Define a function
+compute_s_n <- function(n){
+  x <-1:n
+  sum(x)
+}
+
+m <- 25
+# Create an empty vector
+s_n <- vector(length = m)
+
+# Apply a for loop
+for(n in 1:m){
+  s_n[n] <- compute_s_n(n)
+}
+
+n <- 1:m
+plot(n,s_n)
+lines(n, n*(n+1)/2)
+
+# DataCamp Assessment 4.0 Programming Basics
+
+# Q1
+x <- c(1,2,-3,4)
+if(all(x>0)){
+  print("All Positives")
+}else{
+  print("Not all positives")
+}
+
+# Q2
+x <- c(TRUE,FALSE)
+all(!x)
+
+# Q3 ifelse
+#char_len <- nchar(murders$state)
+#head(char_len)
+
+new_names <- ifelse(nchar(murders$state)>8,murders$abb,murders$state)
+
+# Q4 function
+sum_n <- function(n){
+  x<-1:n
+  sum(x)}
+
+# Q5 function
+altman_plot <- function(x,y){
+  plot(y+x,y-x)
+}
+# Q6
+  compute_s_n <- function(n){
+    x<-1:n
+    sum(x^2)
+  }
 
